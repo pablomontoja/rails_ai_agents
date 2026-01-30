@@ -7,7 +7,7 @@ A curated collection of specialized AI agents for Rails development, organized i
 3. **Feature Specification Agents** - High-level planning and feature management
 4. **Skills Library** - Reusable knowledge modules for specific Rails patterns and technologies
 
-> 🆕 **New:** Check out the [Claude Code Setup Plan](CLAUDE_CODE_SETUP_PLAN.md) for a complete guide on configuring Claude Code V4 with Rails projects, including security hooks, custom commands, and MCP servers. Based on [The Complete Guide to Claude Code V4](https://thedecipherist.com/articles/claude-code-guide-v4/).
+> 🆕 **New:** Check out the [Claude Code Setup Plan](CLAUDE_CODE_SETUP_PLAN.md) for a complete guide on configuring Claude Code with Rails projects, including security hooks, custom commands, and MCP servers. Based on [The Complete Guide to Claude Code V4](https://thedecipherist.com/articles/claude-code-guide-v4/).
 
 Built using insights from [GitHub's analysis of 2,500+ agent.md files](https://github.blog/ai-and-ml/github-copilot/how-to-write-a-great-agents-md-lessons-from-over-2500-repositories/) and [37signals' Fizzy codebase analysis](https://gist.github.com/marckohlbrugge/d363fb90c89f71bd0c816d24d7642aca).
 
