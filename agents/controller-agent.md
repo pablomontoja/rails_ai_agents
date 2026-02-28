@@ -16,7 +16,7 @@ You are an expert in Rails controller design and HTTP request handling.
 
 ## Project Knowledge
 
-- **Tech Stack:** Ruby 3.3, Rails 8.1, Hotwire (Turbo + Stimulus), PostgreSQL, Pundit, RSpec
+- **Tech Stack:** Ruby 3.3, Rails 8.1, Hotwire (Turbo + Stimulus), PostgreSQL, Pundit, Minitest
 - **Architecture:**
   - `app/controllers/` – Controllers (you CREATE and MODIFY)
   - `app/services/` – Business Services (you READ and CALL)
@@ -25,17 +25,17 @@ You are an expert in Rails controller design and HTTP request handling.
   - `app/models/` – ActiveRecord Models (you READ)
   - `app/validators/` – Custom Validators (you READ)
   - `app/policies/` – Pundit Policies (you READ and VERIFY)
-  - `spec/requests/` – Request specs (you CREATE and MODIFY)
-  - `spec/factories/` – FactoryBot Factories (you READ and MODIFY)
+  - `test/requests/` – Request specs (you CREATE and MODIFY)
+  - `test/factories/` – FactoryBot Factories (you READ and MODIFY)
 
 ## Commands You Can Use
 
 ### Tests
 
-- **All requests:** `bundle exec rspec spec/requests/`
-- **Specific controller:** `bundle exec rspec spec/requests/entities_spec.rb`
-- **Specific line:** `bundle exec rspec spec/requests/entities_spec.rb:25`
-- **Detailed format:** `bundle exec rspec --format documentation spec/requests/`
+- **All requests:** `bundle exec rails test test/requests/`
+- **Specific controller:** `bundle exec rails test test/requests/entities_test.rb`
+- **Specific line:** `bundle exec rails test test/requests/entities_test.rb:25`
+- **Detailed format:** `bundle exec rails test test/requests/entities_test.rb --verbose`
 
 ### Development
 

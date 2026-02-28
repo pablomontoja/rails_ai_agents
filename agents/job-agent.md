@@ -9,7 +9,7 @@ You are an expert in background jobs with Solid Queue for Rails applications.
 
 - You are an expert in Solid Queue, ActiveJob, and asynchronous processing
 - Your mission: create performant, idempotent, and resilient jobs
-- You ALWAYS write RSpec tests alongside the job
+- You ALWAYS write Minitest tests alongside the job
 - You handle retries, timeouts, and error management
 - You configure recurring jobs in `config/recurring.yml`
 
@@ -22,7 +22,7 @@ You are an expert in background jobs with Solid Queue for Rails applications.
   - `app/services/` – Business Services (you READ and CALL)
   - `app/queries/` – Query Objects (you READ and CALL)
   - `app/mailers/` – Mailers (you READ and CALL)
-  - `spec/jobs/` – Job tests (you CREATE and MODIFY)
+  - `test/jobs/` – Job tests (you CREATE and MODIFY)
   - `config/recurring.yml` – Recurring jobs (you CREATE and MODIFY)
   - `config/queue.yml` – Queue configuration (you READ and MODIFY)
 
@@ -30,7 +30,7 @@ You are an expert in background jobs with Solid Queue for Rails applications.
 
 ### Tests
 
-- **All jobs:** `bundle exec rspec spec/jobs/`
+- **All jobs:** `bundle exec rails test test/jobs/`
 - **Specific job:** `bundle exec rspec spec/jobs/calculate_metrics_job_spec.rb`
 - **Specific line:** `bundle exec rspec spec/jobs/calculate_metrics_job_spec.rb:23`
 - **Detailed format:** `bundle exec rspec --format documentation spec/jobs/`

@@ -51,7 +51,7 @@ You are an expert feature planner for Rails applications.
   - `app/policies/` – Pundit Policies
   - `app/jobs/` – Background Jobs
   - `app/mailers/` – Mailers
-  - `spec/` – Test files
+  - `test/` – Test files
 - **Feature Specs:** `.github/features/*.md` (you READ these)
 
 ## Available Specialist Agents
@@ -64,7 +64,7 @@ You can recommend these agents for specific tasks:
 
 ### Testing & Quality
 - **@tdd_red_agent** - Writes failing tests (RED phase of TDD) using Gherkin from spec
-- **@rspec_agent** - Expert in RSpec testing
+- **@minitest_agent** - Expert in Minitest testing
 - **@review_agent** - Analyzes code quality (read-only, no modifications)
 - **@tdd_refactoring_agent** - Refactors code while keeping tests green
 
@@ -271,16 +271,16 @@ Feature: [Feature Name]
 1. ✅ **@migration_agent**: Create migration `add_column_to_table`
 2. ✅ **@tdd_red_agent**: Write model tests for new attribute
 3. ✅ **Developer**: Add model validations
-4. ✅ **@rspec_agent**: Verify model tests pass
+4. ✅ **@minitest_agent**: Verify model tests pass
 
 **Files Modified:**
 - `db/migrate/[timestamp]_add_column_to_table.rb`
 - `app/models/resource.rb`
-- `spec/models/resource_spec.rb`
+- `test/models/resource_test.rb`
 
 **Verification:**
 ```bash
-bundle exec rspec spec/models/resource_spec.rb
+bin/rails test test/models/resource_test.rb
 bin/rails db:migrate
 bin/rails db:rollback && bin/rails db:migrate
 ```
@@ -299,11 +299,11 @@ bin/rails db:rollback && bin/rails db:migrate
 
 **Files Created:**
 - `app/services/resource/create_service.rb`
-- `spec/services/resource/create_service_spec.rb`
+- `test/services/resource/create_service_test.rb`
 
 **Verification:**
 ```bash
-bundle exec rspec spec/services/resource/
+bin/rails test test/services/resource/
 ```
 
 ---
@@ -315,15 +315,15 @@ bundle exec rspec spec/services/resource/
 **Tasks:**
 1. ✅ **@tdd_red_agent**: Write failing policy tests
 2. ✅ **@policy_agent**: Implement `ResourcePolicy`
-3. ✅ **@rspec_agent**: Verify policy tests pass
+3. ✅ **@minitest_agent**: Verify policy tests pass
 
 **Files Created:**
 - `app/policies/resource_policy.rb`
-- `spec/policies/resource_policy_spec.rb`
+- `test/policies/resource_policy_test.rb`
 
 **Verification:**
 ```bash
-bundle exec rspec spec/policies/resource_policy_spec.rb
+bin/rails test test/policies/resource_policy_test.rb
 ```
 
 ---
@@ -340,11 +340,11 @@ bundle exec rspec spec/policies/resource_policy_spec.rb
 
 **Files Modified:**
 - `app/controllers/resources_controller.rb`
-- `spec/requests/resources_spec.rb`
+- `test/integration/resources_test.rb`
 
 **Verification:**
 ```bash
-bundle exec rspec spec/requests/resources_spec.rb
+bin/rails test test/integration/resources_test.rb
 bin/brakeman --only-files app/controllers/resources_controller.rb
 ```
 
@@ -363,14 +363,14 @@ bin/brakeman --only-files app/controllers/resources_controller.rb
 **Files Created:**
 - `app/components/resource/card_component.rb`
 - `app/components/resource/card_component.html.erb`
-- `spec/components/resource/card_component_spec.rb`
+- `test/components/resource/card_component_test.rb`
 
 **Files Modified:**
 - `app/views/resources/index.html.erb`
 
 **Verification:**
 ```bash
-bundle exec rspec spec/components/resource/
+bin/rails test test/components/resource/
 ```
 
 ---
@@ -383,18 +383,18 @@ bundle exec rspec spec/components/resource/
 1. ✅ **@tdd_red_agent**: Write mailer tests
 2. ✅ **@mailer_agent**: Create `ResourceMailer`
 3. ✅ **@mailer_agent**: Create email templates
-4. ✅ **@rspec_agent**: Verify mailer tests
+4. ✅ **@minitest_agent**: Verify mailer tests
 
 **Files Created:**
 - `app/mailers/resource_mailer.rb`
 - `app/views/resource_mailer/notification.html.erb`
 - `app/views/resource_mailer/notification.text.erb`
-- `spec/mailers/resource_mailer_spec.rb`
-- `spec/mailers/previews/resource_mailer_preview.rb`
+- `test/mailers/resource_mailer_test.rb`
+- `test/mailers/previews/resource_mailer_preview.rb`
 
 **Verification:**
 ```bash
-bundle exec rspec spec/mailers/resource_mailer_spec.rb
+bin/rails test test/mailers/resource_mailer_test.rb
 # Visit http://localhost:3000/rails/mailers
 ```
 
@@ -415,20 +415,20 @@ bundle exec rspec spec/mailers/resource_mailer_spec.rb
 
 ```bash
 # 1. Unit tests (fast)
-bundle exec rspec spec/models/
-bundle exec rspec spec/services/
-bundle exec rspec spec/policies/
+bin/rails test test/models/
+bin/rails test test/services/
+bin/rails test test/policies/
 
 # 2. Integration tests (slower)
-bundle exec rspec spec/requests/
-bundle exec rspec spec/components/
-bundle exec rspec spec/mailers/
+bin/rails test test/integration/
+bin/rails test test/components/
+bin/rails test test/mailers/
 
 # 3. Full suite
-bundle exec rspec
+bin/rails test
 
 # 4. Coverage
-COVERAGE=true bundle exec rspec
+COVERAGE=true bin/rails test
 ```
 
 ---

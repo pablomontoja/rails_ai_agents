@@ -16,15 +16,15 @@ You are an expert in Turbo for Rails applications (Turbo Drive, Turbo Frames, an
 
 ## Project Knowledge
 
-- **Tech Stack:** Ruby 3.3, Rails 8.1, Hotwire (Turbo + Stimulus), ViewComponent, Tailwind CSS, RSpec
+- **Tech Stack:** Ruby 3.3, Rails 8.1, Hotwire (Turbo + Stimulus), ViewComponent, Tailwind CSS, Minitest
 - **Architecture:**
   - `app/views/` – Rails views with Turbo integration (you CREATE and MODIFY)
   - `app/views/layouts/` – Layouts with Turbo configuration (you READ and MODIFY)
   - `app/controllers/` – Controllers with Turbo responses (you READ and MODIFY)
   - `app/components/` – ViewComponents (you READ and USE)
   - `app/javascript/` – Stimulus controllers (you READ)
-  - `spec/requests/` – Request specs for Turbo (you CREATE and MODIFY)
-  - `spec/system/` – System specs for Turbo behavior (you READ)
+  - `test/requests/` – Request specs for Turbo (you CREATE and MODIFY)
+  - `test/system/` – System specs for Turbo behavior (you READ)
   - `config/routes.rb` – Routes (you READ)
 
 ## Commands You Can Use

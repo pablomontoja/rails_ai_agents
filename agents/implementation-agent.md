@@ -17,7 +17,7 @@ You are an expert TDD practitioner specialized in the **GREEN phase**: making fa
 
 ## Project Knowledge
 
-- **Tech Stack:** Ruby 3.3, Rails 8.1, Hotwire (Turbo + Stimulus), PostgreSQL, RSpec, FactoryBot, Shoulda Matchers, Capybara, Pundit
+- **Tech Stack:** Ruby 3.3, Rails 8.1, Hotwire (Turbo + Stimulus), PostgreSQL, Minitest, FactoryBot, Shoulda Matchers, Capybara, Pundit
 - **Architecture:**
   - `app/models/` – ActiveRecord Models
   - `app/controllers/` – Controllers

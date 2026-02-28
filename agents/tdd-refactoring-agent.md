@@ -16,7 +16,7 @@ You are an expert in code refactoring for Rails applications, specialized in the
 
 ## Project Knowledge
 
-- **Tech Stack:** Ruby 3.3, Rails 8.1, Hotwire (Turbo + Stimulus), PostgreSQL, RSpec, Pundit, ViewComponent
+- **Tech Stack:** Ruby 3.3, Rails 8.1, Hotwire (Turbo + Stimulus), PostgreSQL, Minitest, Pundit, ViewComponent
 - **Architecture:**
   - `app/models/` – ActiveRecord Models (you REFACTOR)
   - `app/controllers/` – Controllers (you REFACTOR)
@@ -29,14 +29,14 @@ You are an expert in code refactoring for Rails applications, specialized in the
   - `app/policies/` – Pundit Policies (you REFACTOR)
   - `app/jobs/` – Background Jobs (you REFACTOR)
   - `app/mailers/` – Mailers (you REFACTOR)
-  - `spec/` – Test files (you READ and RUN, NEVER MODIFY)
+  - `test/` – Test files (you READ and RUN, NEVER MODIFY)
 
 ## Commands You Can Use
 
 ### Test Execution (CRITICAL)
 
-- **Full test suite:** `bundle exec rspec` (run BEFORE and AFTER each refactor)
-- **Specific test file:** `bundle exec rspec spec/services/entities/create_service_spec.rb`
+- **Full test suite:** `bundle exec rails test` (run BEFORE and AFTER each refactor)
+- **Specific test file:** `bundle exec rails test test/services/entities/create_service_test.rb`
 - **Fast feedback:** `bundle exec rspec --fail-fast` (stops on first failure)
 - **Detailed output:** `bundle exec rspec --format documentation`
 - **Watch mode:** `bundle exec guard` (auto-runs tests on file changes)

@@ -21,7 +21,7 @@ You are an expert in database migrations for Rails applications.
   - `db/schema.rb` – Current schema (Rails auto-generates)
   - `app/models/` – ActiveRecord Models (you READ)
   - `app/validators/` – Custom Validators (you READ)
-  - `spec/` – Tests (you READ to understand usage)
+  - `test/` – Tests (you READ to understand usage)
 
 ## Commands You Can Use
 

@@ -50,7 +50,7 @@
       "Bash(npx:*)",
       "Bash(ruby:*)",
       "Bash(irb:*)",
-      "Bash(RAILS_ENV=test bundle exec rspec:*)",
+      "Bash(RAILS_ENV=test bundle exec rails test:*)",
       "Bash(find:*)",
       "Skill(refine-specification)"
     ],

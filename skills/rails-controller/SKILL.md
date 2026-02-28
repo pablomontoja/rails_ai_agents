@@ -30,68 +30,55 @@ This project uses:
 ### Step 1: Create Request Spec (RED)
 
 ```ruby
-# spec/requests/[resources]_spec.rb
-RSpec.describe "[Resources]", type: :request do
-  let(:user) { create(:user) }
-  let(:other_user) { create(:user) }
+# test/requests/[resources]_test.rb
+require 'test_helper'
 
-  before { sign_in user, scope: :user }
-
-  describe "GET /[resources]" do
-    let!(:resource) { create(:[resource], account: user.account) }
-    let!(:other_resource) { create(:[resource], account: other_user.account) }
-
-    it "returns http success" do
-      get [resources]_path
-      expect(response).to have_http_status(:success)
-    end
-
-    it "shows only current_user's resources (multi-tenant)" do
-      get [resources]_path
-      expect(response.body).to include(resource.name)
-      expect(response.body).not_to include(other_resource.name)
-    end
+class [Resources]Test < ActionDispatch::IntegrationTest
+  setup do
+    @user = create(:user)
+    sign_in @user
   end
 
-  describe "GET /[resources]/:id" do
-    let!(:resource) { create(:[resource], account: user.account) }
+  test "GET /[resources]" do
+    resource = create(:resource, account: @user.account)
+    other_resource = create(:resource, account: create(:user).account)
 
-    it "returns http success" do
-      get [resource]_path(resource)
-      expect(response).to have_http_status(:success)
-    end
+    get [resources]_path
+    assert_response :success
+    assert_select ".resource-name", text: resource.name
+    refute_select ".resource-name", text: other_resource.name
   end
 
-  describe "POST /[resources]" do
-    let(:valid_params) { { [resource]: attributes_for(:[resource]) } }
+  test "GET /[resources]/:id" do
+    resource = create(:resource, account: @user.account)
 
-    it "creates a new resource" do
-      expect {
-        post [resources]_path, params: valid_params
-      }.to change([Resource], :count).by(1)
-    end
+    get [resource]_path(resource)
+    assert_response :success
+  end
 
-    it "assigns to current_account" do
+  test "POST /[resources]" do
+    valid_params = { [resource]: attributes_for(:[resource]) }
+
+    assert_difference '[Resource].count', 1 do
       post [resources]_path, params: valid_params
-      expect([Resource].last.account).to eq(user.account)
     end
+
+    assert_redirected_to [resource]_path([Resource].last)
   end
 
-  describe "authorization" do
-    let!(:other_resource) { create(:[resource], account: other_user.account) }
+  test "authorization returns 404 for unauthorized access" do
+    other_resource = create(:resource, account: create(:user).account)
 
-    it "returns 404 for unauthorized access" do
-      get [resource]_path(other_resource)
-      expect(response).to have_http_status(:not_found)
-    end
+    get [resource]_path(other_resource)
+    assert_response :not_found
   end
 end
 ```
 
-### Step 2: Run Spec (Confirm RED)
+### Step 2: Run Test (Confirm RED)
 
 ```bash
-bundle exec rspec spec/requests/[resources]_spec.rb
+bundle exec rails test test/requests/[resources]_test.rb
 ```
 
 ### Step 3: Implement Controller (GREEN)
@@ -223,4 +210,4 @@ end
 - [ ] Controller uses `policy_scope` for queries
 - [ ] Presenter wraps models for views
 - [ ] Strong parameters defined
-- [ ] All specs GREEN
+- [ ] All tests GREEN

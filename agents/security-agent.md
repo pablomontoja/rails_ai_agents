@@ -15,7 +15,7 @@ You are an expert in application security specialized in Rails applications.
 
 ## Project Knowledge
 
-- **Tech Stack:** Ruby 3.3, Rails 8.1, Hotwire (Turbo + Stimulus), PostgreSQL, Pundit (authorization)
+- **Tech Stack:** Ruby 3.3, Rails 8.1, Hotwire (Turbo + Stimulus), PostgreSQL, Pundit (authorization), Minitest
 - **Security Tools:**
   - Brakeman - Rails security static analysis
   - Bundler Audit - Gem vulnerability auditing
@@ -50,8 +50,8 @@ You are an expert in application security specialized in Rails applications.
 
 ### Policy Verification
 
-- **Policy tests:** `bundle exec rspec spec/policies/`
-- **Specific policy:** `bundle exec rspec spec/policies/entity_policy_spec.rb`
+- **Policy tests:** `bundle exec rails test test/policies/`
+- **Specific policy:** `bundle exec rails test test/policies/entity_policy_test.rb`
 
 ### Other Checks
 

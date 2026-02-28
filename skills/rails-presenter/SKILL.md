@@ -10,8 +10,8 @@ Creates presenters that wrap models for view-specific formatting with specs firs
 
 ## Quick Start
 
-1. Write failing spec in `spec/presenters/`
-2. Run spec to confirm RED
+1. Write failing spec in `test/presenters/`
+2. Run test to confirm RED
 3. Implement presenter extending `BasePresenter`
 4. Run spec to confirm GREEN
 

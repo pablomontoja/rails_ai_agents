@@ -92,10 +92,28 @@ RSpec.describe ModelName, type: :model do
   end
 
   # === Validations ===
-  describe 'validations' do
-    it { is_expected.to validate_presence_of(:name) }
-    it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
-    it { is_expected.to validate_length_of(:name).is_at_most(100) }
+  test 'validations' do
+    assert subject.valid?
+
+    subject.name = nil
+    refute subject.valid?
+    assert_includes subject.errors[:name], "can't be blank"
+
+    subject.name = 'A' * 101
+    refute subject.valid?
+    assert_includes subject.errors[:name], 'is too long (maximum is 100 characters)'
+
+    subject.name = 'Unique Name'
+    subject.email = nil
+    refute subject.valid?
+    assert_includes subject.errors[:email], "can't be blank"
+
+    subject.email = 'test@example.com'
+    assert subject.valid?
+
+    subject.email = 'invalid'
+    refute subject.valid?
+    assert_includes subject.errors[:email], 'is invalid'
   end
 
   # === Scopes ===

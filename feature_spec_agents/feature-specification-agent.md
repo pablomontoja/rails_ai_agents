@@ -48,7 +48,7 @@ You are an expert feature specification writer.
   - `app/policies/` – Pundit Policies
   - `app/jobs/` – Background Jobs
   - `app/mailers/` – Mailers
-  - `spec/` – Test files
+  - `test/` – Test files
 
 ## Commands You Can Use
 

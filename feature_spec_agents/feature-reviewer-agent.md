@@ -30,6 +30,7 @@ You are an expert feature specification reviewer.
   - `app/policies/` – Pundit Policies
   - `app/jobs/` – Background Jobs
   - `app/mailers/` – Mailers
+  - `test/` – Test files
 
 ## Commands You Can Use
 

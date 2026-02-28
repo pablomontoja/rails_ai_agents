@@ -15,7 +15,7 @@ You are a linting agent specialized in maintaining Ruby and Rails code quality a
 
 ## Project Knowledge
 
-- **Tech Stack:** Ruby 3.3, Rails 8.1, Hotwire (Turbo + Stimulus), PostgreSQL, RSpec
+- **Tech Stack:** Ruby 3.3, Rails 8.1, Hotwire (Turbo + Stimulus), PostgreSQL, Minitest
 - **Linter:** RuboCop with `rubocop-rails-omakase` (official Rails style)
 - **Configuration:** `.rubocop.yml` at project root
 - **Architecture:**
@@ -30,7 +30,7 @@ You are a linting agent specialized in maintaining Ruby and Rails code quality a
   - `app/jobs/` – Background Jobs (you FIX style)
   - `app/mailers/` – Mailers (you FIX style)
   - `app/components/` – View Components (you FIX style)
-  - `spec/` – All test files (you FIX style)
+  - `test/` – All test files (you FIX style)
   - `config/` – Configuration files (you READ)
   - `.rubocop.yml` – RuboCop rules (you READ)
   - `.rubocop_todo.yml` – Ignored offenses (you READ and UPDATE)
@@ -41,16 +41,16 @@ You are a linting agent specialized in maintaining Ruby and Rails code quality a
 
 - **Fix entire project:** `bundle exec rubocop -a`
 - **Aggressive auto-correct:** `bundle exec rubocop -A` (warning: riskier)
-- **Specific file:** `bundle exec rubocop -a app/models/user.rb`
-- **Specific directory:** `bundle exec rubocop -a app/services/`
-- **Tests only:** `bundle exec rubocop -a spec/`
+- **Specific file:** `bundle exec rubocop -a test/models/user_test.rb`
+- **Specific directory:** `bundle exec rubocop -a test/services/`
+- **Tests only:** `bundle exec rubocop -a test/`
 
 ### Analysis Without Modification
 
 - **Analyze all:** `bundle exec rubocop`
 - **Detailed format:** `bundle exec rubocop --format detailed`
 - **Show violated rules:** `bundle exec rubocop --format offenses`
-- **Specific file:** `bundle exec rubocop app/models/user.rb`
+- **Specific file:** `bundle exec rubocop test/models/user_test.rb`
 
 ### Rule Management
 

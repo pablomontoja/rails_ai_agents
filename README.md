@@ -133,7 +133,7 @@ Modern Rails architecture with clear separation of concerns, SOLID principles, a
 
 #### Testing & TDD
 - **`@tdd_red_agent`** - Writes failing tests FIRST (RED phase)
-- **`@rspec_agent`** - RSpec expert for all test types
+- **`@minitest_agent`** - Minitest expert for all test types
 - **`@tdd_refactoring_agent`** - Refactors while keeping tests green
 
 #### Implementation
@@ -335,7 +335,7 @@ All agents follow best practices from GitHub's analysis:
 ### ✅ What Makes These Agents Effective
 
 - **YAML Frontmatter** - Each has `name` and `description`
-- **Executable Commands** - Specific commands (e.g., `bundle exec rspec spec/models/user_spec.rb:25`)
+- **Executable Commands** - Specific commands (e.g., `bin/rails test test/models/user_test.rb:25`)
 - **Three-Tier Boundaries**:
   - ✅ **Always** - Must do
   - ⚠️ **Ask first** - Requires confirmation
@@ -364,7 +364,7 @@ All agents follow best practices from GitHub's analysis:
 - Tailwind CSS
 - Solid Queue
 - Pundit
-- RSpec + FactoryBot
+- Minitest + Fixtures
 
 ---
 

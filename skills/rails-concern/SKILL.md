@@ -36,34 +36,32 @@ Creates concerns (ActiveSupport::Concern modules) for shared behavior with specs
 For **Model Concerns**, test via a model that includes it:
 
 ```ruby
-# spec/models/concerns/[concern_name]_spec.rb
-RSpec.describe [ConcernName] do
+# test/models/concerns/[concern_name]_test.rb
+require 'test_helper'
+
+class [ConcernName]Test < ActiveSupport::TestCase
   # Create a test class that includes the concern
-  let(:test_class) do
+  def test_class
     Class.new(ApplicationRecord) do
       self.table_name = "events"  # Use existing table
       include [ConcernName]
     end
   end
 
-  let(:instance) { test_class.new }
-
-  describe "included behavior" do
-    it "adds the expected methods" do
-      expect(instance).to respond_to(:method_from_concern)
-    end
+  def setup
+    @instance = test_class.new
   end
 
-  describe "#method_from_concern" do
-    it "behaves as expected" do
-      expect(instance.method_from_concern).to eq(expected_value)
-    end
+  test "included behavior" do
+    assert_respond_to @instance, :method_from_concern
   end
 
-  describe "class methods" do
-    it "adds scope" do
-      expect(test_class).to respond_to(:scope_name)
-    end
+  test "#method_from_concern behaves as expected" do
+    assert_equal expected_value, @instance.method_from_concern
+  end
+
+  test "class methods" do
+    assert_respond_to test_class, :scope_name
   end
 end
 ```
@@ -71,16 +69,14 @@ end
 Alternative: Test through an actual model that uses the concern:
 
 ```ruby
-# spec/models/event_spec.rb
-RSpec.describe Event, type: :model do
-  describe "[ConcernName] behavior" do
-    describe "#method_from_concern" do
-      let(:event) { build(:event) }
+# test/models/event_test.rb
+require 'test_helper'
 
-      it "does something" do
-        expect(event.method_from_concern).to eq(expected)
-      end
-    end
+class EventTest < ActiveSupport::TestCase
+  test "[ConcernName] behavior" do
+    event = build(:event)
+
+    assert_equal expected, event.method_from_concern
   end
 end
 ```
@@ -88,27 +84,28 @@ end
 For **Controller Concerns**, test via request specs:
 
 ```ruby
-# spec/requests/[feature]_spec.rb
-RSpec.describe "[Feature]", type: :request do
-  describe "pagination (from Paginatable concern)" do
-    let(:user) { create(:user) }
-    before { sign_in user }
+# test/requests/[feature]_test.rb
+require 'test_helper'
 
-    it "paginates results" do
-      create_list(:resource, 30, account: user.account)
-      get resources_path
-      expect(response.body).to include("page")
-    end
+class [Feature]Test < ActionDispatch::IntegrationTest
+  test "pagination (from Paginatable concern)" do
+    user = create(:user)
+    sign_in user
+
+    create_list(:resource, 30, account: user.account)
+    get resources_path
+
+    assert_select "div.pagination"
   end
 end
 ```
 
-### Step 2: Run Spec (Confirm RED)
+### Step 2: Run Test (Confirm RED)
 
 ```bash
-bundle exec rspec spec/models/concerns/[concern_name]_spec.rb
+bundle exec rails test test/models/concerns/[concern_name]_test.rb
 # OR
-bundle exec rspec spec/models/[model]_spec.rb
+bundle exec rails test test/models/[model]_test.rb
 ```
 
 ### Step 3: Implement Concern (GREEN)
